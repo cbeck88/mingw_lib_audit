@@ -1,0 +1,6 @@
+/build
+/bin
+/include
+/lib
+/mingw
+mingw*dep*.tar.gz
