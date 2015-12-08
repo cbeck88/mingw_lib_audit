@@ -51,6 +51,10 @@ target_include_directories (triangle_test_epoxy PUBLIC ${SDL2_INCLUDE_DIR} ${OPE
 target_link_libraries(triangle_test_epoxy LINK_PUBLIC ${SDL2_LIBRARY} ${OPENGL_LIBRARY} ${EPOXY_LIBRARY})
 target_compile_definitions (triangle_test_epoxy PUBLIC -DUSE_EPOXY)
 
+add_executable (triangle_test2 opengl_triangle_test2.cpp)
+target_include_directories (triangle_test2 PUBLIC ${SDL2_INCLUDE_DIR} ${OPENGL_INCLUDE_DIR})
+target_link_libraries(triangle_test2 LINK_PUBLIC ${SDL2_LIBRARY} ${OPENGL_LIBRARY})
+
 add_executable (triangle_test2_epoxy opengl_triangle_test2.cpp)
 target_include_directories (triangle_test2_epoxy PUBLIC ${SDL2_INCLUDE_DIR} ${OPENGL_INCLUDE_DIR} ${EPOXY_INCLUDE_DIR})
 target_link_libraries(triangle_test2_epoxy LINK_PUBLIC ${SDL2_LIBRARY} ${OPENGL_LIBRARY} ${EPOXY_LIBRARY})

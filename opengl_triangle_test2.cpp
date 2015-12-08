@@ -38,37 +38,36 @@ struct Triangle
     init();
   }
 
+  GLuint load_shader(GLenum type, const char *src) {
+    printf("  Preparing to create a shader:\n-----\n%s\n-----\n", src);
+    const GLuint id = glCreateShader(type);
+    assert(id);
+    printf("  Sourcing shader...\n");
+    glShaderSource(id, 1, &src, nullptr);
+    printf("  Compiling shader...\n");
+    glCompileShader(id);
+    GLint compiled = 0;
+    printf("  Checking compilation status of shader...\n");
+    glGetShaderiv(id, GL_COMPILE_STATUS, &compiled);
+    if (compiled == GL_FALSE) {
+      GLint logSize = 0;
+      glGetShaderiv(id, GL_INFO_LOG_LENGTH, &logSize);
+      GLchar * infoLog = new GLchar[logSize + 1];
+      glGetShaderInfoLog(id, logSize, nullptr, infoLog);
+      std::string shader_desc =  (type == GL_VERTEX_SHADER ? "vertex" : "fragment");
+      printf("  Compilation of %s shader failed, here is log:\n %s \n", shader_desc.c_str(), infoLog);
+      assert(false);
+    }
+    //assert(compiled);
+    printf("  Shader loaded.\n\n");
+    return id;
+  };
+
   void init()
   {
     printf("init()\n");
 
     glClearColor(.3f, .3f, .3f, 1.f);
-
-    auto load_shader = [](GLenum type, const char *src) -> GLuint
-    {
-      printf("  Preparing to create a shader:\n-----\n%s\n-----\n", src);
-      const GLuint id = glCreateShader(type);
-      assert(id);
-      printf("  Sourcing shader...\n");
-      glShaderSource(id, 1, &src, nullptr);
-      printf("  Compiling shader...\n");
-      glCompileShader(id);
-      GLint compiled = 0;
-      printf("  Checking compilation status of shader...\n");
-      glGetShaderiv(id, GL_COMPILE_STATUS, &compiled);
-      if (compiled == GL_FALSE) {
-        GLint logSize = 0;
-        glGetShaderiv(id, GL_INFO_LOG_LENGTH, &logSize);
-        GLchar * infoLog = new GLchar[logSize + 1];
-        glGetShaderInfoLog(id, logSize, nullptr, infoLog);
-        std::string shader_desc =  (type == GL_VERTEX_SHADER ? "vertex" : "fragment");
-        printf("  Compilation of %s shader failed, here is log:\n %s \n", shader_desc.c_str(), infoLog);
-        assert(false);
-      }
-      //assert(compiled);
-      printf("  Shader loaded.\n\n");
-      return id;
-    };
 
     vert_id = load_shader(
       GL_VERTEX_SHADER,

@@ -9,7 +9,7 @@ find_path(EPOXY_INCLUDE_DIR
 )
 
 find_library(EPOXY_LIBRARY
-  NAMES epoxy epoxy_0
+  NAMES epoxy epoxy_0 epoxy-0
   PATH_SUFFIXES bin lib64 lib libs64 libs libs/Win32 libs/Win64
 )
 
