@@ -13,3 +13,8 @@ cd ..
 # Copy stuff, assets and bin
 cp assets/* build/
 cp mingw/bin/* build/
+
+echo
+echo "!!!"
+echo "!!! To run the tests with wine, you MUST setup an override for opengl32.dll using winecfg!"
+echo "!!!"
