@@ -66,10 +66,7 @@
 # CMAKE_INCLUDE_PATH to modify the search paths.
 include(FindPackageHandleStandardArgs)
 
-# NOTE: I changed this 'find_path' from 'al.h' to 'AL/al.h'.
-# This fixes it for mingw and doesn't seem to break anything else.
-# I don't know if it was correct but this is what I'm doing for now.
-find_path(OPENAL_INCLUDE_DIR AL/al.h
+find_path(OPENAL_INCLUDE_DIR al.h
   HINTS
     ENV OPENALDIR
   PATH_SUFFIXES include/AL include/OpenAL include

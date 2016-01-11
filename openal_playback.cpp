@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <AL/al.h>
-#include <AL/alc.h>
+#include <al.h>
+#include <alc.h>
 #include <assert.h>
 #include <stdint.h>
 #include <unistd.h>
